@@ -12,15 +12,15 @@ import { ProductService } from 'src/app/product.service';
 export class AdminProductsComponent implements OnInit, OnDestroy {
 
   products: Product[];
-  filteredProducts: any[];
   subscription: Subscription;
   tableResource: DataTableResource<Product>;
   items: Product[] = [];
   itemCount: number;
 
   constructor(private productService: ProductService ) { 
-    this.subscription = this.productService.getAll().subscribe(products => {
-      this.filteredProducts = this.products = products;
+    this.subscription = this.productService.getAll()
+    .subscribe(products => {
+      this.products = products;
       this.initializeTable(products);
     });
   }
@@ -41,9 +41,11 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   filter(query: string) {
-    this.filteredProducts = (query)
+    let filteredProducts = (query)
         ? this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase()))
         : this.products;
+
+        this.initializeTable(filteredProducts);
   }
 
   ngOnDestroy() {
