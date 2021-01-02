@@ -22,4 +22,8 @@ export class ProductService {
      .pipe(map(changes => changes
      .map(c => ({ key: c.payload.key, ...c.payload.val() }))));
   }
+
+  getProduct(productId) {
+    return this.db.object('/products/' + productId).valueChanges();
+  }
 }
