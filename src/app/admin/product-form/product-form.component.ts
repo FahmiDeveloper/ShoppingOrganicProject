@@ -13,6 +13,7 @@ export class ProductFormComponent implements OnInit {
 
   categories$;
   product = {};
+  id;
 
   constructor(
     private router: Router,
@@ -20,14 +21,15 @@ export class ProductFormComponent implements OnInit {
     private categoryService: CategoryService,
     private productService: ProductService
   ) {
-    this.categories$ = this.categoryService.getCategories();
+    this.categories$ = this.categoryService.getCategories(); 
 
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id) this.productService.getProduct(id).pipe(take(1)).subscribe(p => this.product = p);
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) this.productService.getProduct(this.id).pipe(take(1)).subscribe(p => this.product = p);
   }
 
   save(product) {
-    this.productService.create(product);
+    if (this.id) this.productService.update(this.id, product);
+    else this.productService.create(product);
     this.router.navigate(['/admin/products']);
   }
 
