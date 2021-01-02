@@ -17,11 +17,21 @@
      (reload)="reloadItems($event)"
      >
 
-      <data-table-column>
+      <data-table-column
+      [property]="'title'"
+      [header]="'Title'"
+      [sortable]="true"
+      [resizable]="true"
+      >
       </data-table-column>
 
 
-      <data-table-column>
+      <data-table-column
+      [property]="'price'"
+      [header]="'Price'"
+      [sortable]="true"
+      [resizable]="true"
+      >
       </data-table-column>
 
 
