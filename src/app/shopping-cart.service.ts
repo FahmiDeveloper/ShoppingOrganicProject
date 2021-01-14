@@ -3,6 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { Product } from './models/product';
+import { ShoppingCart } from './models/shopping-cart';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ShoppingCartService {
     })
   }
 
-  async getCart() {
+  async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/'+ cartId).snapshotChanges()
     .pipe(map(actions =>  actions.payload.val() ))
