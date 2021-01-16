@@ -49,9 +49,19 @@ export class ShoppingCartService {
     .pipe(take(1))
     .subscribe(item => {
       if (item) {
-        item$.update({quantity: item['quantity'] + change});
+        item$.update({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price, 
+          quantity: item['quantity'] + change
+        });
       } else {
-        item$.set({ product, quantity: 1 });
+        item$.set({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price, 
+          quantity: 1 
+        });
       }
     });
   }
