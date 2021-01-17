@@ -12,16 +12,29 @@ export class ShoppingCartService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  private create() {
-    return this.db.list('/shopping-carts').push({
-      dateCreate: new Date().getTime()
-    })
-  }
-
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/'+ cartId).snapshotChanges()
     .pipe(map(x => new ShoppingCart(x.payload.exportVal().items)));
+  }
+
+  async addToCart(product: Product) {
+    this.updateItemQuantity(product, 1);
+  }
+
+  async removeFromCart(product: Product) {
+      this.updateItemQuantity(product, -1);
+  }
+
+  async clearCart() {
+    let cartId = await this.getOrCreateCartId();
+    this.db.object('/shopping-carts/' + cartId + '/items').remove();
+  }
+
+  private create() {
+    return this.db.list('/shopping-carts').push({
+      dateCreate: new Date().getTime()
+    })
   }
 
   private async getOrCreateCartId(): Promise<string> {
@@ -33,13 +46,7 @@ export class ShoppingCartService {
     return result.key;
   }
 
-  async addToCart(product: Product) {
-    this.updateItemQuantity(product, 1);
-  }
-
-  async removeFromCart(product: Product) {
-      this.updateItemQuantity(product, -1);
-  }
+  
 
   private async updateItemQuantity(product: Product, change: number) {
     let cartId = await this.getOrCreateCartId();
@@ -49,9 +56,22 @@ export class ShoppingCartService {
     .pipe(take(1))
     .subscribe(item => {
       if (item) {
-        item$.update({quantity: item['quantity'] + change});
+        let quantity = item['quantity'] + change;
+        if (quantity === 0) item$.remove();
+        else
+        item$.update({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price, 
+          quantity: quantity
+        });
       } else {
-        item$.set({ product, quantity: 1 });
+        item$.set({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price, 
+          quantity: 1 
+        });
       }
     });
   }
