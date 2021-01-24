@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataTableResource } from 'angular7-data-table';
+import { ProductService } from 'app/product.service';
+import { Product } from 'app/shared/models/product';
 import { Subscription } from 'rxjs';
-import { Product } from 'src/app/models/product';
-import { ProductService } from 'src/app/product.service';
 
 @Component({
   selector: 'app-admin-products',

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
@@ -38,6 +37,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { OrderService } from './order.service';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { environment } from 'environments/environment';
 
 @NgModule({
   declarations: [
