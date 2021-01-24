@@ -31,13 +31,13 @@ import { CustomFormsModule } from 'ng2-validation';
 import { DataTableModule } from 'angular7-data-table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartService } from './shared/services/shopping-cart.service';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { OrderService } from './shared/services/order.service';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { environment } from 'environments/environment';
+import { ProductCardComponent } from './shared/components/product-card/product-card.component';
+import { ProductQuantityComponent } from './shared/components/product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
