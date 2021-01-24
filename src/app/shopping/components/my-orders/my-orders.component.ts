@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'app/shared/services/auth.service';
+import { OrderService } from 'app/shared/services/order.service';
 import { switchMap } from 'rxjs/operators';
-import { AuthService } from '../shared/services/auth.service';
-import { OrderService } from '../shared/services/order.service';
 
 @Component({
   selector: 'app-my-orders',
