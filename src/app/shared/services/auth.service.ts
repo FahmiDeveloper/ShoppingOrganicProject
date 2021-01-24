@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import firebase from 'firebase/app';
 import { ActivatedRoute } from '@angular/router';
-import { AppUser } from './shared/models/app-user';
+import { AppUser } from '../models/app-user';
 import { switchMap } from 'rxjs/operators';
 import { UserService } from './user.service';
 
