@@ -10,10 +10,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableModule } from 'angular7-data-table';
 import { environment } from 'environments/environment';
 import { CustomFormsModule } from 'ng2-validation';
+import { AdminModule } from './admin/admin.module';
 
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
+import { ProductFormComponent } from './admin/components/product-form/product-form.component';
+import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
@@ -24,12 +26,12 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductsComponent } from './products/products.component';
-import { AdminAuthGuard } from './shared/services/admin-auth-guard.service';
 import { AuthGuard } from './shared/services/auth-guard.service';
 import { SharedModule } from './shared/shared.module';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+
 
 @NgModule({
   declarations: [
@@ -41,10 +43,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent,
     ProductFilterComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent
@@ -52,6 +51,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
   imports: [
     BrowserModule,
     SharedModule,
+    AdminModule,
     FormsModule,
     CustomFormsModule,
     DataTableModule.forRoot(),
