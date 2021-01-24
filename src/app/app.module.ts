@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { BsNavbarComponent } from './core/components/bs-navbar/bs-navbar.component';
 import { HomeComponent } from './core/components/home/home.component';
 import { LoginComponent } from './core/components/login/login.component';
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductsComponent } from './shopping/components/products/products.component';
 import { ShoppingModule } from './shopping/shopping.module';
@@ -26,15 +27,13 @@ import { ShoppingModule } from './shopping/shopping.module';
 @NgModule({
   declarations: [
     AppComponent,
-    BsNavbarComponent,
-    HomeComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
     AdminModule,
     ShoppingModule,
+    CoreModule,
     FormsModule,
     CustomFormsModule,
     DataTableModule.forRoot(),
